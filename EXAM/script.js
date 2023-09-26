@@ -17,6 +17,9 @@ $(document).ready(() => {
     var $restrtBtm = $('#buttonRestart');
     //// * Кнопка применить значения фильтра брендов
     var $applyBrandsFilterBtn = $('#ApplyBrandButton');
+    //// * Кнопка применить значения фильтра категории
+    var $applyCategoryFilterBtn = $('#ApplyCategoryButton');
+    
 
     //// ? -----------------------------------
 
@@ -84,6 +87,26 @@ $(document).ready(() => {
             renderTable(productsData.products, $tableProduct);
         }
 
+    });
+    //// ! Обработчик кнопки Применить фильтр Категорий "КЛИК"
+    $applyCategoryFilterBtn.on('click', (e) => {
+        let filter = $categorySelect.val();
+
+        let product = [];
+
+        productsData.products.forEach((p) => {
+            if (p.category.includes(filter)) {
+                product.push(p)
+            }
+        });
+
+        if (product.length >= 1) {
+            $tableProduct.empty();
+            renderTable(product, $tableProduct);
+        } else {  //// ! на случай если выбрано "Все.." - рендерим таблицу со всеми данными
+            $tableProduct.empty();
+            renderTable(productsData.products, $tableProduct);
+        }
     });
 
     //// ? --------------------------------------------------
@@ -197,15 +220,14 @@ $(document).ready(() => {
         loadProductsCategory();
     })
 
+    //// * ----------------------------------------
     var changeAviableBrand = function (brandList) {
-
         brandList.forEach((b) => {
             var opt = document.createElement('option');
             opt.value = b;
             opt.innerHTML = b;
             $BrandsSelect.append(opt);
         });
-        
     }
 
     //// ? --------------------------------------------------
