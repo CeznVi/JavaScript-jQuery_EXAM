@@ -7,6 +7,8 @@ $(document).ready(() => {
         brands: []
     };
 
+
+
     //// * Информационная таблица
     var $tableProduct = $('.table-products');
 
