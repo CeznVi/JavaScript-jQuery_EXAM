@@ -19,7 +19,9 @@ $(document).ready(() => {
     var $applyBrandsFilterBtn = $('#ApplyBrandButton');
     //// * Кнопка применить значения фильтра категории
     var $applyCategoryFilterBtn = $('#ApplyCategoryButton');
-    
+    //// * Кнопка применить значения фильтра цены
+    var $applyPriceFilterBtn = $('#ApplyPrice');
+
 
     //// ? -----------------------------------
 
@@ -30,6 +32,11 @@ $(document).ready(() => {
     var $BrandsSelect = $('#BrandsSelect');
     //// * Поле выбора категорий
     var $categorySelect = $('#CategoriesSelect');
+    //// * Поле минимальной цены
+    var $priceFrom = $('#PriceFrom');
+    //// * Поле максимальной цены
+    var $priceTo = $('#PriceTo');
+
     //// ? -----------------------------------
 
 
@@ -40,6 +47,8 @@ $(document).ready(() => {
         $tableProduct.empty();
         $BrandsSelect.val('Все бренды');
         $categorySelect.val('Все категории');
+        $priceFrom.val(null);
+        $priceTo.val(null);
         renderTable(productsData.products, $tableProduct);
     });
 
@@ -96,6 +105,25 @@ $(document).ready(() => {
 
         productsData.products.forEach((p) => {
             if (p.category.includes(filter)) {
+                product.push(p)
+            }
+        });
+
+        if (product.length >= 1) {
+            $tableProduct.empty();
+            renderTable(product, $tableProduct);
+        } else {  //// ! на случай если выбрано "Все.." - рендерим таблицу со всеми данными
+            $tableProduct.empty();
+            renderTable(productsData.products, $tableProduct);
+        }
+    });
+
+    $applyPriceFilterBtn.on('click', (e) => {
+         
+        let product = [];
+
+        productsData.products.forEach((p) => {
+            if (p.price >= $priceFrom.val() && p.price <= $priceTo.val()) {
                 product.push(p)
             }
         });
