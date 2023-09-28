@@ -24,6 +24,9 @@ $(document).ready(() => {
     //// * Кнопка применить значения фильтра цены
     var $applyPriceFilterBtn = $('#ApplyPrice');
 
+    //// ? --------------- Определение параметров модального окна
+    var $modalWindowTitle = $('#exampleModalLabel');
+    var $modalWindowProductImage = $('#product-image');
 
     //// ? -----------------------------------
 
@@ -177,10 +180,25 @@ $(document).ready(() => {
                     $row.append($('<td>').text(product[productKey]));
                 }
             }
+
+            $row.attr({
+                'data-bs-toggle': 'modal',
+                'data-bs-target': '#exampleModal'
+                });
+
+            $row.on('click', () => {
+                $modalWindowTitle.text(product.title);
+                $modalWindowProductImage.attr({
+                    src: product.images[0],
+                });
+                
+            });
+
         }
 
         return $row;
     }
+
 
     //// ! Рендер таблици
     var renderTable = function (products, $parent) {
