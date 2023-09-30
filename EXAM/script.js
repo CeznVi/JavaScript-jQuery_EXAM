@@ -27,7 +27,8 @@ $(document).ready(() => {
     //// ? --------------- Определение параметров модального окна
     var $modalWindowTitle = $('#exampleModalLabel');
     var $modalWindowProductImage = $('#product-image');
-
+    var $modalWindowProductDescr = $('#product-descr');
+    var $modalWindowByuBtn = $('#product-buyBtn');
     //// ? -----------------------------------
 
     //// ? --------------- Определение полей
@@ -191,7 +192,8 @@ $(document).ready(() => {
                 $modalWindowProductImage.attr({
                     src: product.images[0],
                 });
-                
+                $modalWindowProductDescr.text(product.description);
+                $modalWindowByuBtn.text("Купить " + product.price + "$");
             });
 
         }

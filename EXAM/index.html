@@ -82,10 +82,28 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <img src="" id="product-image" class="figure-img img-fluid rounded" alt="...">
-        </div>
+            <!-- <img src="" id="product-image" class="figure-img img-fluid rounded" alt="..."> -->
+            <div class="card text-center " style="background-color:#ffffff;">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                  <img id="product-image" src="" class="img-fluid" />
+                  <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.696)"></div>
+                  </a>
+                </div>
+              
+                <div class="card-body">
+                  <p id="product-descr" class="card-text">
+                    Some quick example text to build on the card title and make up the bulk of the
+                    card's content.
+                  </p>
+                </div>
+              </div>
+
+
+        </div> 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="product-buyBtn" class="btn btn-success"></button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
         </div>
       </div>
     </div>
